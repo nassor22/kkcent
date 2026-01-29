@@ -56,7 +56,7 @@ export class OrderService {
       const orderItem = this.orderItemRepository.create({
         id: uuid(),
         orderId: savedOrder.id,
-        sellerId: ''; // TODO: Get from variant/product
+        sellerId: '', // TODO: Get from variant/product
         ...item,
       });
       await this.orderItemRepository.save(orderItem);
@@ -144,7 +144,7 @@ export class OrderService {
       [OrderStatus.RETURN_REQUESTED]: [OrderStatus.RETURNED, OrderStatus.DISPUTED],
       [OrderStatus.RETURNED]: [OrderStatus.REFUNDED],
       [OrderStatus.REFUNDED]: [],
-      [OrderStatus.DISPUTED]: [OrderStatus.RESOLVED, OrderStatus.REFUNDED],
+      [OrderStatus.DISPUTED]: [OrderStatus.REFUNDED],
     };
 
     if (!validTransitions[currentStatus].includes(newStatus)) {

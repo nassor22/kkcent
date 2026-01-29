@@ -1,6 +1,5 @@
-import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { UserRole } from '../../database/entities';
+import { SetMetadata } from '@nestjs/common';
+import { UserRole } from '../../database/entities/user.entity';
 
-export const Roles = createParamDecorator((roles: UserRole[], ctx: ExecutionContext) => {
-  return roles;
-});
+export const ROLES_KEY = 'roles';
+export const Roles = (...roles: (UserRole | string)[]) => SetMetadata(ROLES_KEY, roles);

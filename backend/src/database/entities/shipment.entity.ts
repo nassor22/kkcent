@@ -53,4 +53,16 @@ export class Shipment {
 
   @Column({ nullable: true })
   updatedAt: Date;
+
+  @Column({ nullable: true })
+  currentLocation?: string;
+
+  @Column({ nullable: true })
+  trackingNotes?: string;
+
+  @Column({ nullable: true })
+  deliveredAt?: Date;
+
+  @Column({ nullable: true })
+  courierName?: string;
 }

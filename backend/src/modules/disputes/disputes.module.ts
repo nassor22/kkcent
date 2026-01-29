@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Dispute, Order } from '../../../database/entities';
-import { PaymentsModule } from '../../payments/payments.module';
+import { Dispute } from '../../database/entities/dispute.entity';
+import { Order } from '../../database/entities/order.entity';
+import { PaymentsModule } from '../payments/payments.module';
 import { DisputeController } from './controllers/dispute.controller';
 import { DisputeService } from './services/dispute.service';
 

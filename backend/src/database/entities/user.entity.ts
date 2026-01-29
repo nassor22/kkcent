@@ -7,6 +7,7 @@ import {
   OneToMany,
   Index,
 } from 'typeorm';
+import { SellerProfile } from './seller-profile.entity';
 
 export enum UserRole {
   BUYER = 'buyer',

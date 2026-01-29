@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SellerProfile } from '../../../database/entities';
-import { AuthModule } from '../../auth/auth.module';
+import { SellerProfile } from '../../database/entities/seller-profile.entity';
+import { AuthModule } from '../auth/auth.module';
 import { SellerController } from './controllers/seller.controller';
 import { SellerService } from './services/seller.service';
 

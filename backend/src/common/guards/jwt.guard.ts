@@ -1,9 +1,9 @@
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
-import { AuthService } from '../modules/auth/services/auth.service';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class JwtGuard implements CanActivate {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly jwtService: JwtService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -18,12 +18,12 @@ export class JwtGuard implements CanActivate {
       throw new UnauthorizedException('Invalid authorization header');
     }
 
-    const payload = await this.authService.verifyToken(token);
-    if (!payload) {
+    try {
+      const payload = await this.jwtService.verifyAsync(token);
+      request.user = payload;
+      return true;
+    } catch (error) {
       throw new UnauthorizedException('Invalid token');
     }
-
-    request.user = payload;
-    return true;
   }
 }
